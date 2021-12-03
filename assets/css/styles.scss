@@ -2,9 +2,12 @@
 $color_a: #01B1EA;
 $color_a_hover: #555;
 $color_header: #F0F0F0;
+$color_borde_li: #363636;
+$fondo_nav: #222;
 
 body{
     background: url(../img/bg.png);
+    font-family: sans-serif, Arial, Helvetica;
 
     .container{
         width: 80%;
@@ -20,6 +23,8 @@ body{
         a:hover{
             color: $color_a_hover;
         }
+
+        //Header
     
         header{
             width: 100%;
@@ -55,6 +60,43 @@ body{
                     text-shadow: 0px 2px 1px #222222, 0px 0px 4px $color_a;
                 }
             }
+        }
+
+        //NavBar
+        #menu{
+            background: $fondo_nav;
+            color: white;
+            height: 55px;
+            overflow: hidden;
+            clear: both;
+            border-bottom: 4px solid $color_a;
+            ul{
+                list-style: none;
+                margin: 0 auto;                
+
+                li{
+                    line-height: 55px;
+                    float: left;
+                    border-right: 1px solid $color_borde_li;
+
+                    a{                        
+                        display: block;
+                        color: white;
+                        padding-left: 12px;
+                        padding-right: 12px;
+                        transition: all 500ms;
+                    }
+
+                    a:first-child{
+                        border-left: 1px solid $color_borde_li;
+                    }
+
+                    a:hover{
+                        background: $color_a;
+                    }
+                }
+
+            }            
         }
     
         .product{
