@@ -1,13 +1,66 @@
-body{
-    #logo{
-        img{
-            width: 150px;
-        }
-    }
+//Variables generales
+$color_a: #01B1EA;
+$color_a_hover: #555;
+$color_header: #F0F0F0;
 
-    .product{
-        img{
-            width: 100px;
+body{
+    background: url(../img/bg.png);
+
+    .container{
+        width: 80%;
+        margin: 0 auto;
+        box-shadow: 0px 0px 10px gray;
+        background: white;
+
+        a, a:visited{
+            color: $color_a;
+            text-decoration: none;
+        }
+    
+        a:hover{
+            color: $color_a_hover;
+        }
+    
+        header{
+            width: 100%;
+            height: 145px;
+            box-sizing: border-box;
+            background: $color_header;
+            
+            #logo{
+                padding: 20px;
+                margin-left: 20px;
+                float: left;
+
+                img{
+                    height: 100px;
+                    float: left;
+                }
+
+                a{
+                    color: $color_a;
+                    float: left;
+                    font-size: 40px;
+                    letter-spacing: 4px;
+                    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    margin-top: 18px;
+                    margin-left: 45px;
+                    text-shadow: 0px 2px 1px #222222;
+                    transition: all 450ms;
+                }
+
+                a:hover{
+                    text-shadow: 0px 2px 1px #222222, 0px 0px 4px $color_a;
+                }
+            }
+        }
+    
+        .product{
+            img{
+                width: 100px;
+            }
         }
     }
 }
