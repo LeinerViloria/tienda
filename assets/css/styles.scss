@@ -3,6 +3,12 @@ $color_a: #01B1EA;
 $color_a_hover: #555;
 $color_header: #F0F0F0;
 $color_borde_li: #363636;
+$color_h3_lateral: #222;
+$fondo_h3_lateral: #E1E1E1;
+$color_formulario_entradas: #C9C9C9;
+$color_formulario_entradas_focus: #1579b5;
+$color_formulario_botones: #2979CD;
+$color_borde_form: #11608E;
 $fondo_nav: #222;
 
 body{
@@ -26,7 +32,7 @@ body{
 
         //Header
     
-        header{
+        #header{
             width: 100%;
             height: 145px;
             box-sizing: border-box;
@@ -97,6 +103,110 @@ body{
                 }
 
             }            
+        }
+
+        //Content
+        #content{
+            margin: 0px auto;
+            overflow: hidden;
+            background: white;
+
+            #lateral{
+                width: 25%;
+                float: left;
+                margin-top: 20px;
+                margin-left: 10px;                
+                min-height: 450px;
+
+                h3{
+                    display: block;
+                    color: $color_h3_lateral;
+                    width: 100%;
+                    text-align: center;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                    margin-bottom: 15px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    background: $fondo_h3_lateral;
+                    border-bottom: 2px solid $color_a;
+                }
+
+                .block_aside{
+                    display: block;
+                    width: 90%;
+                    margin: 5px auto;
+                    padding: 10px;                    
+                }
+
+                ul{
+                    list-style: none;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    
+                    li{
+                        margin-left: -40px;                           
+                        padding: 2px;       
+                        margin-top: 5px;                        
+                        margin-bottom: 5px;
+                        text-align: center;                                    
+                    }
+                }
+            }
+        }
+
+        //Formularios
+        form{
+
+            label,
+            input[type="button"], 
+            input[type="submit"], 
+            button{
+                display: block!important;                
+                margin-top: 10px!important;                
+            }
+
+            label,
+            input[type="text"],
+            input[type="password"],
+            input[type="email"]{
+                display: block;
+                width: 95%;
+                margin-top: 2px;
+                margin-bottom: 2px;                
+            }
+
+            input[type="text"],
+            input[type="password"],
+            input[type="email"],
+            select{
+                border: 1px solid $color_formulario_entradas;
+                box-shadow: 0px 0px 2px #ccc inset;
+                background:white;
+                padding: 2px;
+                color: gray;
+                transition: all 300ms;
+            }
+
+            input[type="text"]:focus,
+            input[type="password"]:focus,
+            input[type="email"]:focus{
+                border: 1px solid $color_formulario_entradas_focus;
+                color: black;
+            }
+
+            input[type="button"], input[type="submit"], button{
+                display: block;
+                border-radius: 6px;
+                width: auto;
+                padding: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+                color: white;
+                background: $color_formulario_botones;
+                border: 1px solid $color_borde_form;
+                cursor: pointer;
+            }
         }
     
         .product{
