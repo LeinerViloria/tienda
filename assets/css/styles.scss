@@ -205,7 +205,7 @@ body{
                         margin-bottom: 10px;
                     }
                 }
-            }
+            }            
             
         }
 
@@ -286,5 +286,25 @@ body{
             background: $fondo_boton_hover;
         }
             
+    }
+
+    #error{  
+        height: 90vh;  
+        display: block;    
+        
+        img{            
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            width: 350px;   
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        h2{
+            text-align: center;
+            font-size: 40px;
+        }
+
     }
 }

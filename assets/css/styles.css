@@ -273,4 +273,24 @@ body .container .button {
 body .container .button:hover {
   background: #2da336;
 }
+
+body #error {
+  height: 90vh;
+  display: block;
+}
+
+body #error img {
+  margin-bottom: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 350px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+body #error h2 {
+  text-align: center;
+  font-size: 40px;
+}
 /*# sourceMappingURL=styles.css.map */
