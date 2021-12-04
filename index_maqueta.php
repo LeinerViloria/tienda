@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +14,7 @@
 
 <body>
     <div class="container">
-        <!--Cabecera-->
+        <!--Cabecera-
         <header id="header">
             <div id="logo">
                 <img src="./assets/img/camiseta.png" alt="Camiseta logo">
@@ -22,7 +23,7 @@
                 </a>
             </div>
         </header>
-        <!--Menu-->
+        <!--Menu--
         <nav id="menu">
             <ul>
                 <li><a href="#">Inicio</a></li>
@@ -32,8 +33,10 @@
                 <li><a href="#">Categoria 4</a></li>
             </ul>
         </nav>
-        <!--Barra lateral-->
+        <!--Barra lateral--
         <div id="content">
+        -->
+        <!--
             <aside id="lateral">
                 <div id="login" class="block_aside">
                     <h3>Entrar a la web</h3>
@@ -51,9 +54,10 @@
                     </ul>                                                            
                 </div>
             </aside>
-
-            <!--Contenido Central-->
+        
+            <!--Contenido Central--
             <div id="central">
+            -->
                 <h1>Productos destacados</h1>
                 <div class="product">
                     <img src="./assets/img/camiseta.png" alt="">
@@ -85,11 +89,13 @@
                     <p>130.000</p>
                     <a href="#" class="button">Comprar</a>
                 </div>
-            </div>
+            <!--</div>
 
+        <!--
         </div>
 
-        <!--Pie de pagina-->
+
+        <!--Pie de pagina--
         <footer>
             <p>Desarrollado por Leiner Viloria &copy 2021</p>
         </footer>
