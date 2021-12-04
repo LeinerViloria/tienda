@@ -9,6 +9,8 @@ $color_formulario_entradas: #C9C9C9;
 $color_formulario_entradas_focus: #1579b5;
 $color_formulario_botones: #2979CD;
 $color_borde_form: #11608E;
+$fondo_boton: #33AE3D;
+$fondo_boton_hover: #2da336;
 $fondo_nav: #222;
 
 body{
@@ -112,7 +114,7 @@ body{
             background: white;
 
             #lateral{
-                width: 25%;
+                width: 22%;
                 float: left;
                 margin-top: 20px;
                 margin-left: 10px;                
@@ -153,6 +155,69 @@ body{
                     }
                 }
             }
+
+            #central{
+                width: 75%;
+                float: right;
+                border-left: 1px solid #ccc;
+                box-sizing: border-box;
+                box-shadow: -5px -1px 5px #ddd;
+                padding: 20px;
+                min-height: 500px;
+
+                h1{
+                    font-size: 28px;
+                    font-weight: normal;                    
+                    text-align: center;
+                    letter-spacing: 1px;
+                    border-bottom: 1px solid #ccc;                    
+                    margin-top: -5px;
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    padding-top: 0px;
+                }
+
+                .product{
+                    width: 30%;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    margin-bottom: 15px;
+                    border-right: 1px solid #ccc;                    
+                    padding-right: 5px;
+                    box-sizing: border-box;
+                    float: left;
+                    text-align: center;
+
+                    h2{
+                        font-size: 18px;
+                    }                    
+
+                    img{
+                        width: 100px;
+                    }
+
+                    p{
+                        font-weight: bold;
+                        color: #555;
+                    }
+
+                    h2, img, p{
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            
+        }
+
+        footer{
+            text-align: center;
+            box-sizing: border-box;
+            padding-top: 5px;
+            padding-bottom: 2px;
+            color: white;
+            background: #222222;
+            clear: both;
+            border-top: 4px solid $color_a;
         }
 
         //Formularios
@@ -194,25 +259,32 @@ body{
                 border: 1px solid $color_formulario_entradas_focus;
                 color: black;
             }
+            
+        }
 
-            input[type="button"], input[type="submit"], button{
-                display: block;
-                border-radius: 6px;
-                width: auto;
-                padding: 5px;
-                padding-left: 10px;
-                padding-right: 10px;
-                color: white;
-                background: $color_formulario_botones;
-                border: 1px solid $color_borde_form;
-                cursor: pointer;
-            }
+        input[type="button"], input[type="submit"], button, .button{
+            display: block;
+            border-radius: 6px;
+            width: auto;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: white;
+            background: $color_formulario_botones;
+            border: 1px solid $color_borde_form;
+            cursor: pointer;
         }
-    
-        .product{
-            img{
-                width: 100px;
-            }
+
+        .button{
+            background: $fondo_boton;
+            color: white!important;
+            text-decoration: none;
+            transition: all 400ms;
         }
+
+        .button:hover{
+            background: $fondo_boton_hover;
+        }
+            
     }
 }

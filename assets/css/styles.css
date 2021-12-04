@@ -102,7 +102,7 @@ body .container #content {
 }
 
 body .container #content #lateral {
-  width: 25%;
+  width: 22%;
   float: left;
   margin-top: 20px;
   margin-left: 10px;
@@ -144,6 +144,72 @@ body .container #content #lateral ul li {
   text-align: center;
 }
 
+body .container #content #central {
+  width: 75%;
+  float: right;
+  border-left: 1px solid #ccc;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: -5px -1px 5px #ddd;
+          box-shadow: -5px -1px 5px #ddd;
+  padding: 20px;
+  min-height: 500px;
+}
+
+body .container #content #central h1 {
+  font-size: 28px;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #ccc;
+  margin-top: -5px;
+  margin-bottom: 20px;
+  padding: 10px;
+  padding-top: 0px;
+}
+
+body .container #content #central .product {
+  width: 30%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  border-right: 1px solid #ccc;
+  padding-right: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  float: left;
+  text-align: center;
+}
+
+body .container #content #central .product h2 {
+  font-size: 18px;
+}
+
+body .container #content #central .product img {
+  width: 100px;
+}
+
+body .container #content #central .product p {
+  font-weight: bold;
+  color: #555;
+}
+
+body .container #content #central .product h2, body .container #content #central .product img, body .container #content #central .product p {
+  margin-bottom: 10px;
+}
+
+body .container footer {
+  text-align: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  color: white;
+  background: #222222;
+  clear: both;
+  border-top: 4px solid #01B1EA;
+}
+
 body .container form label,
 body .container form input[type="button"],
 body .container form input[type="submit"],
@@ -183,7 +249,7 @@ body .container form input[type="email"]:focus {
   color: black;
 }
 
-body .container form input[type="button"], body .container form input[type="submit"], body .container form button {
+body .container input[type="button"], body .container input[type="submit"], body .container button, body .container .button {
   display: block;
   border-radius: 6px;
   width: auto;
@@ -196,7 +262,15 @@ body .container form input[type="button"], body .container form input[type="subm
   cursor: pointer;
 }
 
-body .container .product img {
-  width: 100px;
+body .container .button {
+  background: #33AE3D;
+  color: white !important;
+  text-decoration: none;
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
+}
+
+body .container .button:hover {
+  background: #2da336;
 }
 /*# sourceMappingURL=styles.css.map */
