@@ -1,11 +1,11 @@
 <aside id="lateral">
     <div id="login" class="block_aside">
         <h3>Entrar a la web</h3>
-        <form action="#" method="post">
+        <form action="<?=base_url?>user/login" method="post">
             <label for="email">Email: </label>
-            <input type="email" required>
+            <input type="email" name="email" required>
             <label for="password">Password: </label>
-            <input type="password" required>
+            <input type="password" name="password" required>
             <button type="submit">Entrar</button>
         </form>
         <ul>

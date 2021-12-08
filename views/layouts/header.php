@@ -17,7 +17,7 @@
         <header id="header">
             <div id="logo">
                 <img src="<?=base_url?>assets/img/camiseta.png" alt="Camiseta logo">
-                <a href="./index.php">
+                <a href="<?=base_url?>">
                     Tienda de camisetas
                 </a>
             </div>
@@ -25,7 +25,7 @@
         <!--Menu-->
         <nav id="menu">
             <ul>
-                <li><a href="./index.php">Inicio</a></li>
+                <li><a href="<?=base_url?>">Inicio</a></li>
                 <li><a href="#">Categoria 1</a></li>
                 <li><a href="#">Categoria 2</a></li>
                 <li><a href="#">Categoria 3</a></li>

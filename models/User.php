@@ -116,4 +116,13 @@ class User{
         
     }
 
+    public function login($email, $pass){
+        //Comprobar si existe el usuario
+        $sql = "SELECT COUNT(1) FROM usuarios WHERE email=:correo";
+        $sentencia=self::$db->prepare($sql);
+        $sentencia->bindParam(":correo", $email, PDO::PARAM_STR);
+        $sentencia->execute();
+        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

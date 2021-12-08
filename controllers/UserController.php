@@ -109,6 +109,13 @@ class UserController{
         
     }
 
+    public function login(){
+        if($_SERVER['REQUEST_METHOD']=="POST"){
+            FB::log($_POST);            
+        }
+        //header("Location:".base_url);
+    }
+
     private function verify_user($db, $email){
         $sql = "SELECT COUNT(1) Cantidad FROM usuarios WHERE email=:correo";
 
