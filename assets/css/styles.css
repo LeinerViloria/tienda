@@ -221,7 +221,8 @@ body .container form button {
 body .container form label,
 body .container form input[type="text"],
 body .container form input[type="password"],
-body .container form input[type="email"] {
+body .container form input[type="email"],
+body .container form input[type="file"] {
   display: block;
   width: 95%;
   margin-top: 2px;
@@ -231,6 +232,7 @@ body .container form input[type="email"] {
 body .container form input[type="text"],
 body .container form input[type="password"],
 body .container form input[type="email"],
+body .container form input[type="file"],
 body .container form select {
   border: 1px solid #C9C9C9;
   -webkit-box-shadow: 0px 0px 2px #ccc inset;
@@ -244,7 +246,8 @@ body .container form select {
 
 body .container form input[type="text"]:focus,
 body .container form input[type="password"]:focus,
-body .container form input[type="email"]:focus {
+body .container form input[type="email"]:focus,
+body .container form input[type="file"]:focus {
   border: 1px solid #1579b5;
   color: black;
 }
@@ -292,5 +295,13 @@ body #error img {
 body #error h2 {
   text-align: center;
   font-size: 40px;
+}
+
+body .class_success {
+  color: #219721 !important;
+}
+
+body .class_error {
+  color: #d50a0a !important;
 }
 /*# sourceMappingURL=styles.css.map */

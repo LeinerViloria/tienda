@@ -9,6 +9,8 @@ $color_formulario_entradas: #C9C9C9;
 $color_formulario_entradas_focus: #1579b5;
 $color_formulario_botones: #2979CD;
 $color_borde_form: #11608E;
+$color_class_success: #219721;
+$color_class_error: #d50a0a;
 $fondo_boton: #33AE3D;
 $fondo_boton_hover: #2da336;
 $fondo_nav: #222;
@@ -234,7 +236,8 @@ body{
             label,
             input[type="text"],
             input[type="password"],
-            input[type="email"]{
+            input[type="email"], 
+            input[type="file"]{
                 display: block;
                 width: 95%;
                 margin-top: 2px;
@@ -244,6 +247,7 @@ body{
             input[type="text"],
             input[type="password"],
             input[type="email"],
+            input[type="file"],
             select{
                 border: 1px solid $color_formulario_entradas;
                 box-shadow: 0px 0px 2px #ccc inset;
@@ -255,7 +259,8 @@ body{
 
             input[type="text"]:focus,
             input[type="password"]:focus,
-            input[type="email"]:focus{
+            input[type="email"]:focus,
+            input[type="file"]:focus{
                 border: 1px solid $color_formulario_entradas_focus;
                 color: black;
             }
@@ -306,5 +311,13 @@ body{
             font-size: 40px;
         }
 
+    }
+
+    .class_success{
+        color: $color_class_success!important;
+    }
+
+    .class_error{
+        color: $color_class_error!important;
     }
 }
