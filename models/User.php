@@ -116,13 +116,30 @@ class User{
         
     }
 
-    public function login($email, $pass){
+    public function login(){
+        $email=$this->getEmail();
+        $pass=$this->getPassword();
         //Comprobar si existe el usuario
-        $sql = "SELECT COUNT(1) FROM usuarios WHERE email=:correo";
+        $sql = "SELECT nombres, apellidos, rol, imagen, numero, COUNT(1) Cantidad, password FROM usuarios WHERE email=:correo";
         $sentencia=self::$db->prepare($sql);
         $sentencia->bindParam(":correo", $email, PDO::PARAM_STR);
         $sentencia->execute();
         $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+        if($result && $result[0]['Cantidad']==1){
+            $user = $result[0];
+
+            $verify = password_verify($pass, $user['password']);
+
+            if($verify){
+                return $user;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+        
     }
 
 }

@@ -111,9 +111,45 @@ class UserController{
 
     public function login(){
         if($_SERVER['REQUEST_METHOD']=="POST"){
-            FB::log($_POST);            
+            require_once './models/User.php';
+            
+            $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
+            $pass = !empty($_POST['password']) ? trim($_POST['password']) : null;
+
+            if(!empty($email) && !empty($pass)){
+                $user = new User();
+
+                $user->setEmail($email);
+                $user->setPassword($pass);
+
+                $acceso = $user->login();
+                
+                if($acceso!=false){
+                    $_SESSION['identity'] = $acceso;
+                    if(ucfirst($acceso['rol'])=='Admin'){
+                        $_SESSION['admin']=true;
+                    }
+                }else{
+                    $_SESSION['error_login']="Identificacion fallida";
+                }  
+                
+            }else{
+                $_SESSION['error_login']="Identificacion fallida";
+            }            
+                        
+        }        
+        header("Location:".base_url);
+    }
+
+    public function logout(){
+        if(isset($_SESSION['identity'])){
+            unset($_SESSION['identity']);
+            if($_SESSION['admin']){
+                unset($_SESSION['admin']);
+            }
         }
-        //header("Location:".base_url);
+
+        header("Location:".base_url);
     }
 
     private function verify_user($db, $email){
