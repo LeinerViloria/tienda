@@ -52,13 +52,13 @@ class UserController{
                 $errores['idType'] = "El id debe ser numerico";
             }
 
-            $resultNombre = $this->ctype__alpha($nombres, " ", "El nombre contiene solo letras");
+            $resultNombre = Utils::ctype__alpha($nombres, " ", "El nombre contiene solo letras");
 
             if(!is_null($resultNombre)){
                 $errores['nameType'] = $resultNombre;
             }
 
-            $resultApellido = $this->ctype__alpha($apellidos, " ", "El apellido contiene solo letras");
+            $resultApellido = Utils::ctype__alpha($apellidos, " ", "El apellido contiene solo letras");
 
             if(!is_null($resultApellido)){
                 $errores['lastNameType'] = $resultApellido;
@@ -66,6 +66,10 @@ class UserController{
 
             if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
                 $errores['emailType'] = "El formato del email no es correcto";
+            }
+
+            if(!is_numeric($numero)){
+                $errores['numero'] = "El numero solo contiene numeros";
             }
             
             if(count($errores)==0){                             
@@ -168,22 +172,5 @@ class UserController{
             return false;
         }
                 
-    }
-
-    private function ctype__alpha($array, $separador, $mensaje){
-        $result = null;
-        
-        $arrayVar = explode($separador, $array);
-
-        foreach($arrayVar as $variable){ 
-
-            if(!ctype_alpha($variable)){
-                $result=$mensaje;
-                break;
-            }
-
-        }
-
-        return $result;
-    }
+    }    
 }

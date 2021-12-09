@@ -23,13 +23,13 @@
             </div>
         </header>
         <!--Menu-->
+        <?php $categories = Utils::showCategories(); ?>
         <nav id="menu">
             <ul>
                 <li><a href="<?=base_url?>">Inicio</a></li>
-                <li><a href="#">Categoria 1</a></li>
-                <li><a href="#">Categoria 2</a></li>
-                <li><a href="#">Categoria 3</a></li>
-                <li><a href="#">Categoria 4</a></li>
+                <?php foreach($categories as $index => $category): ?>
+                <li><a href="<?=$index?>"><?=$category?></a></li>  
+                <?php endforeach; ?>              
             </ul>
         </nav>
         <!--Barra lateral-->

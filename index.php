@@ -4,9 +4,9 @@ require_once './autoload.php';
 require_once './config/connection.php';
 require_once './config/parameters.php';
 require_once './helpers/utils.php';
+require_once './vendor/autoload.php';
 require_once './views/layouts/header.php';
 require_once './views/layouts/sidebar.php';
-require_once './vendor/autoload.php';
 
 function show_error(){
     require_once './controllers/ErrorController.php';
