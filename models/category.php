@@ -14,7 +14,7 @@ class category{
         return $this->id;
     }
 
-    public function set($id){
+    public function setId($id){
         $this->id=$id;
     }
 

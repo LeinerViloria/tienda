@@ -223,7 +223,13 @@ body{
         }
 
         //Formularios
-        form{
+        .form_container{
+            width: 50%;
+        }
+        form{            
+            textarea{
+                resize: vertical;
+            }
 
             label,
             input[type="button"], 
@@ -235,16 +241,20 @@ body{
 
             label,
             input[type="text"],
+            input[type="number"],
             input[type="password"],
             input[type="email"], 
-            input[type="file"]{
+            input[type="file"],
+            textarea{
                 display: block;
                 width: 95%;
                 margin-top: 2px;
                 margin-bottom: 2px;                
             }
 
+            textarea,
             input[type="text"],
+            input[type="number"],
             input[type="password"],
             input[type="email"],
             input[type="file"],
@@ -257,7 +267,9 @@ body{
                 transition: all 300ms;
             }
 
+            textarea:focus,
             input[type="text"]:focus,
+            input[type="number"]:focus,
             input[type="password"]:focus,
             input[type="email"]:focus,
             input[type="file"]:focus{
