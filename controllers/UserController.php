@@ -68,7 +68,7 @@ class UserController{
                 $errores['emailType'] = "El formato del email no es correcto";
             }
 
-            if(!is_numeric($numero)){
+            if(!is_numeric($numero) && !is_null($numero)){
                 $errores['numero'] = "El numero solo contiene numeros";
             }
             

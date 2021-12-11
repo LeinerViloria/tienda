@@ -5,6 +5,16 @@
 </a>
 
 <?php
+    if(!empty($_SESSION['productSave'])):
+?>
+<h2 class="<?php echo $_SESSION['productSave']=="Completed" ? "class_success" : "class_error" ?>"><?=$_SESSION['productSave']?></h2>
+<?php
+    Utils::deleteSession("productSave");
+    endif;
+?>
+
+
+<?php
     if(!empty($productos)):
 ?>
 <table>

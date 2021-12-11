@@ -1,4 +1,4 @@
-<h1>Crear nevos productos</h1>
+<h1>Crear nuevos productos</h1>
 
 <div class="form_container">
     <form action="<?= base_url ?>product/save" method="post" enctype="multipart/form-data">
