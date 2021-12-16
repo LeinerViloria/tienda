@@ -39,6 +39,17 @@ class category{
         return $result;
     }
 
+    public function getOne(){
+        $id = $this->id;
+        $sql = "SELECT * FROM categorias WHERE id = :id";
+        $sentencia = self::$db->prepare($sql);
+        $sentencia->bindParam(':id', $id, PDO::PARAM_INT);
+        $sentencia->execute();
+        $result = $sentencia->fetchAll(PDO::FETCH_KEY_PAIR);
+
+        return $result;
+    }
+
     public function save(){
         $op = 0;
         $nombre = $this->getNombre();

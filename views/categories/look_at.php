@@ -1,5 +1,6 @@
-<h1>Productos</h1>
-<?php if (!empty($productos)) : ?>
+<h1><?php echo !empty($this_category) ? $this_category[$id] : 'La categoria no existe' ?></h1>
+
+<?php if (!empty($productos) && !empty($this_category)) : ?>
     <?php foreach ($productos as $producto) : ?>
         <div class="product">
             <a href="<?= base_url ?>product/look_at&id=<?= $producto['id'] ?>">
@@ -7,7 +8,7 @@
                     <img src="data:image/*; base64, <?php echo base64_encode($imagen_productos[$producto['id']]['imagen']) ?>" alt="<?= $producto['nombre'] ?>" height="110">
                 <?php else : ?>
                     <img src="<?= base_url ?>assets/img/camiseta.png" alt="" height="110">
-                <?php endif; ?>            
+                <?php endif; ?>
                 <h2><?= $producto['nombre'] ?></h2>
             </a>
             <p>$<?= number_format($producto['precio'], 0, ',', '.') ?></p>

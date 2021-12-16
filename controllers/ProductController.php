@@ -2,8 +2,41 @@
 require_once './models/product.php';
 class ProductController{
     public function index(){
+        $producto = new product();
+        $productos=$producto->getRandow(6);  
+        
+        $imagen_productos = array();
+
+        foreach($productos as $item){
+            $producto->setId($item['id']);
+            $image = $producto->getOneImage();
+
+            $imagen_productos[$item['id']] = !empty($image) ? $image[0] : null;
+
+        }
+
         //Se puede renderizar la vista
         require_once './views/products/Featured.php';
+    }
+
+    public function look_at(){
+        if(!empty($_GET['id'])){
+
+            $id = trim($_GET['id']);
+
+            $producto = new product();
+            $producto->setId($id);
+            $thisProduct = $producto->getOne();
+            $thisProduct = $thisProduct[0];
+
+            if(!is_null($thisProduct)){
+                $images = $producto->getImages();
+            }  
+            
+        } 
+
+        require_once './views/products/look_at.php';
+
     }
 
     public function process(){
@@ -22,6 +55,80 @@ class ProductController{
         $categories = Utils::showCategories();        
 
         require_once './views/products/Create.php';
+    }
+
+    public function edit(){
+        Utils::isAdmin();
+
+        if(!empty($_GET['id'])){
+            $edit=true;
+
+            $id = trim($_GET['id']);
+
+            $producto = new product();
+            $producto->setId($id);
+            $thisProduct = $producto->getOne();
+            $thisProduct = $thisProduct[0];
+
+            if(is_null($thisProduct)){
+                $edit=false;
+            }else{
+                $images = $producto->getImages();
+            }          
+        }        
+
+
+        
+        $categories = Utils::showCategories();        
+
+        require_once './views/products/Create.php';
+    }
+
+    public function delete(){
+        Utils::isAdmin();
+        
+        if(!empty($_GET['id'])){
+            $id = trim($_GET['id']);
+            $producto = new product();
+            $producto->setId($id);
+            
+            $delete = $producto->delete();        
+            
+            if($delete){
+                $_SESSION['productDelete']="Completed";
+            }else{
+                $_SESSION['productDelete']="Failed";
+            }
+
+        }else{
+            $_SESSION['productDelete']="Failed";
+        }      
+
+        header("Location:".base_url."product/process");
+    }
+
+    public function deleteImage(){
+        Utils::isAdmin();
+        
+        if(!empty($_GET['id'])){
+            $id = trim($_GET['id']);
+
+            $producto = new product();
+            $producto->setIdImage($id);            
+            
+            $delete = $producto->deleteImage();        
+            
+            if($delete){
+                $_SESSION['DeleteImage']="Completed";
+            }else{
+                $_SESSION['DeleteImage']="Failed";
+            }
+
+        }else{
+            $_SESSION['productDelete']="Failed";
+        }      
+
+        header("Location:".base_url."product/process");
     }
 
     public function save(){
@@ -69,28 +176,38 @@ class ProductController{
                 $producto->setNombre($nombre);       
                 $producto->setPrecio($price);
                 $producto->setStock($stock);
-                $producto->setDescripcion($descripcion);
+                $producto->setDescripcion($descripcion);                
                 
-                $save = $producto->save();  
-                
+                $save = $producto->save();                              
+
                 if($save){
                     $_SESSION['productSave']="Completed";
                 }else{
                     $_SESSION['productSave']="Failed";
                 }
 
-                if(isset($_FILES['image']['tmp_name']) && $save){
-                    $imagenes = $_FILES['image']['tmp_name'];
+                if(!empty($_FILES['image']['tmp_name'][0]) && $save){
+                    $imagenes = $_FILES['image'];
+                    $pase = true;
 
-                    foreach($imagenes as $imagen){
-                        $producto->setImagen($imagen);
-                        $saveImage = $producto->saveImage();
-                        if($saveImage){
-                            $_SESSION['saveImage']="Imagenes guardadas";
-                        }else{
-                            $_SESSION['saveImage']="Las imagenes no se guardaron";
+                    foreach($imagenes['type'] as $formato){
+                        if($formato!="image/jpeg" && $formato!="image/jpg" && $formato!="image/png"){
+                            $pase=false;
+                            break;
                         }
-                    }                                                                            
+                    }
+
+                    if($pase){
+                        foreach($imagenes['tmp_name'] as $imagen){
+                            $producto->setImagen($imagen);
+                            $saveImage = $producto->saveImage();
+                            if($saveImage){
+                                $_SESSION['saveImage']="Imagenes guardadas";
+                            }else{
+                                $_SESSION['saveImage']="Las imagenes no se guardaron";
+                            }
+                        }
+                    }                        
 
                 }
             }else{

@@ -1,6 +1,7 @@
 <?php
 
 require_once './models/category.php';
+require_once './models/product.php';
 
 class CategoryController{
     public function index(){                
@@ -11,6 +12,34 @@ class CategoryController{
         require_once './views/categories/index.php';
 
     }
+
+    public function look_at(){
+        if(!empty($_GET['id'])){
+            $id = trim($_GET['id']);
+            $categoria = new category();
+            $categoria->setId($id);
+            $this_category = $categoria->getOne();
+
+            $producto = new product();
+            $producto->setCategoria($id);
+            $productos = $producto->getAllCategory();
+
+            if(!empty($productos)){
+                $imagen_productos = array();
+
+                foreach($productos as $item){
+                    $producto->setId($item['id']);
+                    $image = $producto->getOneImage();
+
+                    $imagen_productos[$item['id']] = !empty($image) ? $image[0] : null;
+
+                }
+            }
+            
+        }
+
+        require_once './views/categories/look_at.php';
+    }    
 
     public function create(){
         Utils::isAdmin();
