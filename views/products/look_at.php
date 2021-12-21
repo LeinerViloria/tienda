@@ -37,7 +37,7 @@
         <?php endif; ?>
         <div class="data">
             <p class="price">$<?= number_format($thisProduct['precio'], 0, ',', '.') ?></p>
-            <p class="stock"><?= $thisProduct['stock'] ?></p>
+            <p class="stock"><?php echo ($thisProduct['stock']>0) ? $thisProduct['stock'].' unidades' : 'No hay unidades disponibles' ?></p>
             <p class="descripcion"><?= $thisProduct['descripcion'] ?></p>
             <a href="<?=base_url?>car/add&id_producto=<?=$thisProduct['id']?>" class="button">Comprar</a>
         </div>

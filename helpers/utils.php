@@ -101,4 +101,12 @@ class Utils{
         return $message;
     }
 
+    public static function getStocks(){
+        $producto = new product();
+
+        $productos = $producto->getAllStocks();
+
+        return $productos;
+    }
+
 }

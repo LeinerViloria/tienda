@@ -8,6 +8,12 @@ class CarController
         if(isset($_SESSION['carrito'])){
             $carrito = $_SESSION['carrito'];
         }
+
+        if(isset($_SESSION['alertStock'])){
+            echo '<script>alert("No esta disponible la cantidad solicitada");</script>';
+            Utils::deleteSession("alertStock");
+        }
+
         require_once './views/car/index.php';
     }   
 
@@ -24,8 +30,24 @@ class CarController
 			$counter = 0;
 			foreach($_SESSION['carrito'] as $indice => $elemento){                
 				if($elemento['id'] == $producto_id){
-					$_SESSION['carrito'][$indice]['unidades']++;
-					$counter++;
+
+                    $productosBD = Utils::getStocks();                    
+
+                    foreach($productosBD as $product){                        
+
+                        if($elemento['id']==$product['id']){
+
+                            if($elemento['unidades']<$product['stock']){
+                                $_SESSION['carrito'][$indice]['unidades']++;
+                                $counter++;
+                            }else{
+                                $_SESSION['alertStock']=true;
+                            }
+
+                            break;
+                        }
+                    }                    
+
                     $pase=false;
 				}
 			}	
@@ -75,15 +97,37 @@ class CarController
     {
         if(isset($_GET['item'])){
             $item=trim($_GET['item']);
+
+            $productos_guardados = Utils::getStocks();
             
-            if(isset($_SESSION['carrito'][$item])){                
+            if(isset($_SESSION['carrito'][$item])){   
+                
+                $producto_en_solicitud = $_SESSION['carrito'][$item];             
+
+                foreach($productos_guardados as $producto){
+
+                    if($producto['id']==$producto_en_solicitud['id']){
+                        
+                        if($producto_en_solicitud['unidades']<$producto['stock']){
+                            $_SESSION['carrito'][$item]['unidades']++;
+
+                            $_SESSION['carrito'][$item]['producto'][0]['stock']=$producto['stock'];
+                            
+                        }else{
+                            $_SESSION['alertStock']=true;
+                        }
+
+                        break;
+                    }
+
+                }
                                 
-                $_SESSION['carrito'][$item]['unidades']++;
+                
             }
 
 
         }
-        header("Location:".base_url."car/index");
+        header("Location:".base_url."car/index");        
     }
 
     public function down()
@@ -93,7 +137,18 @@ class CarController
             
             if(isset($_SESSION['carrito'][$item])){
                 $producto_en_carro = $_SESSION['carrito'][$item];
+                $productos_guardados = Utils::getStocks();
                 
+                foreach($productos_guardados as $producto){
+
+                    if($producto['id']==$producto_en_carro['id']){
+
+                        $_SESSION['carrito'][$item]['producto'][0]['stock']=$producto['stock'];                                                                    
+
+                        break;
+                    }
+
+                }
                                 
                 if($producto_en_carro['unidades']==1){
                     unset($_SESSION['carrito'][$item]);

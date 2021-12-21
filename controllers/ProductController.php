@@ -13,7 +13,7 @@ class ProductController{
 
             $imagen_productos[$item['id']] = !empty($image) ? $image[0] : null;
 
-        }
+        }                    
 
         //Se puede renderizar la vista
         require_once './views/products/Featured.php';

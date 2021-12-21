@@ -19,7 +19,7 @@
                 <td>
                     <a href="<?=base_url?>car/down&item=<?=$item?>" class="button-updown">-</a>
                     <?=$elemento['unidades']?>
-                    <a href="<?=base_url?>car/up&item=<?=$item?>" class="button-updown">+</a>
+                    <a href="<?=base_url?>car/up&item=<?=$item?>" class="button-updown">+</a>                    
                 </td>
                 <td>$<?=number_format($elemento['precio']*$elemento['unidades'], 0, ',', '.')?></td>
                 <td><a href="<?=base_url?>car/remove&id=<?=$item?>" class="button button-red button-remove-car">Remover producto</a></td>

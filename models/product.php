@@ -108,6 +108,17 @@ class product{
         return $result;
     }
 
+    public function getAllStocks(){
+        $sql = "SELECT id, stock
+        FROM productos";
+
+        $sentencia = self::$db->prepare($sql);
+        $sentencia->execute();
+        $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     public function getAllCategory(){
         $cat_id = $this->getCategoria();
         $sql = "SELECT p.*, c.nombre 'Nombre de categoria'

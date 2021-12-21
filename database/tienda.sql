@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-12-2021 a las 03:34:22
+-- Tiempo de generación: 21-12-2021 a las 17:51:46
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.12
 
@@ -1403,6 +1403,7 @@ INSERT INTO `ciudades` (`id`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `detalles_pedidos`
 --
 -- Creación: 18-12-2021 a las 22:25:23
+-- Última actualización: 21-12-2021 a las 16:50:36
 --
 
 DROP TABLE IF EXISTS `detalles_pedidos`;
@@ -1428,7 +1429,23 @@ INSERT INTO `detalles_pedidos` (`id_pedido`, `id_producto`, `unidades`) VALUES
 (3, '1', 1),
 (3, '4', 2),
 (4, '13', 1),
-(4, '9', 1);
+(4, '9', 1),
+(5, '9', 5),
+(6, '13', 21),
+(7, '1', 25);
+
+--
+-- Disparadores `detalles_pedidos`
+--
+DROP TRIGGER IF EXISTS `update_product_stock`;
+DELIMITER $$
+CREATE TRIGGER `update_product_stock` AFTER INSERT ON `detalles_pedidos` FOR EACH ROW BEGIN
+
+UPDATE productos p SET p.stock = p.stock - NEW.unidades WHERE p.id = NEW.id_producto;
+
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1466,6 +1483,7 @@ INSERT INTO `imagenes` (`id`, `producto_id`, `imagen`) VALUES
 -- Estructura de tabla para la tabla `pedidos`
 --
 -- Creación: 03-12-2021 a las 17:25:32
+-- Última actualización: 21-12-2021 a las 16:50:36
 --
 
 DROP TABLE IF EXISTS `pedidos`;
@@ -1488,7 +1506,10 @@ INSERT INTO `pedidos` (`id`, `usuario_id`, `ciudad_id`, `direccion`, `coste`, `e
 (1, '1005', 70001, 'Calle 26 #4', 314270, 'Preparation', '2021-12-18', '17:41:21'),
 (2, '95', 23670, 'Por aqui cerquita', 105990, 'Sent', '2021-12-20', '19:50:16'),
 (3, '900', 23670, 'Cerquita 123', 60600, 'Ready_to_send', '2021-12-20', '19:57:44'),
-(4, '1005', 41013, 'Aqui', 50000, 'Confirmado', '2021-12-20', '20:44:32');
+(4, '1005', 41013, 'Aqui', 50000, 'Confirmado', '2021-12-20', '20:44:32'),
+(5, '1005', 13836, 'Cerca de x finca', 100000, 'Confirmado', '2021-12-21', '10:54:16'),
+(6, '1005', 52019, 'Por aqui cerquita', 630000, 'Confirmado', '2021-12-21', '10:58:49'),
+(7, '1005', 17001, 'Esta parece ser la ultima prueba', 865000, 'Confirmado', '2021-12-21', '11:50:36');
 
 --
 -- Disparadores `pedidos`
@@ -1509,6 +1530,7 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `productos`
 --
 -- Creación: 03-12-2021 a las 19:16:05
+-- Última actualización: 21-12-2021 a las 16:50:36
 --
 
 DROP TABLE IF EXISTS `productos`;
@@ -1528,13 +1550,13 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `categoria_id`, `nombre`, `descripcion`, `precio`, `stock`, `oferta`, `fecha`) VALUES
-('1', 5, 'Camisa Holp', 'Lorem ipsum dolor sit amet consectetur adipiscing elit, tempus orci tortor nisi faucibus class nam montes, congue erat tristique dis bibendum risus. Platea nunc sapien facilisis netus eros nisi nibh sociosqu leo tellus, phasellus ad pulvinar accumsan magnis per tempor parturient libero. Auctor euismod viverra taciti tempus imperdiet sollicitudin, commodo aptent urna hendrerit iaculis vestibulum hac, porta laoreet nascetur quis condimentum.\r\n\r\nNec erat fusce neque justo gravida maecenas aliquet pellentesque porttitor mattis, libero quis lobortis vitae eu suscipit dui viverra vestibulum, lectus senectus imperdiet dictumst primis diam duis dapibus orci. Aliquet accumsan leo cubilia fermentum mi sagittis eleifend interdum sapien enim cras cum nam urna arcu, a est et purus nibh quisque fusce habitant egestas libero sodales porta porttitor. Tellus vel class hac rutrum erat mus risus facilisi nam mi, ac quam cubilia ultricies penatibus iaculis auctor interdum libero, proin sodales per odio sociosqu suspendisse tempor integer praesent.', 34600, 25, NULL, '2021-12-09'),
+('1', 5, 'Camisa Holp', 'Lorem ipsum dolor sit amet consectetur adipiscing elit, tempus orci tortor nisi faucibus class nam montes, congue erat tristique dis bibendum risus. Platea nunc sapien facilisis netus eros nisi nibh sociosqu leo tellus, phasellus ad pulvinar accumsan magnis per tempor parturient libero. Auctor euismod viverra taciti tempus imperdiet sollicitudin, commodo aptent urna hendrerit iaculis vestibulum hac, porta laoreet nascetur quis condimentum.\r\n\r\nNec erat fusce neque justo gravida maecenas aliquet pellentesque porttitor mattis, libero quis lobortis vitae eu suscipit dui viverra vestibulum, lectus senectus imperdiet dictumst primis diam duis dapibus orci. Aliquet accumsan leo cubilia fermentum mi sagittis eleifend interdum sapien enim cras cum nam urna arcu, a est et purus nibh quisque fusce habitant egestas libero sodales porta porttitor. Tellus vel class hac rutrum erat mus risus facilisi nam mi, ac quam cubilia ultricies penatibus iaculis auctor interdum libero, proin sodales per odio sociosqu suspendisse tempor integer praesent.', 34600, 0, NULL, '2021-12-09'),
 ('12', 3, 'Camisa elegante', 'Esta es una camisa buenisima', 12000, 43, 'Ca', '2021-12-13'),
-('13', 6, 'Chaqueta full para frios', 'Cubre perfectamente', 30000, 24, 'Ch', '2021-12-13'),
+('13', 6, 'Chaqueta full para frios', 'Cubre perfectamente', 30000, 4, 'Ch', '2021-12-21'),
 ('4', 1, 'Sueter manga corta', 'Lorem ipsum dolor sit amet consectetur adipiscing elit, tempus orci tortor nisi faucibus class nam montes, congue erat tristique dis bibendum risus. Platea nunc sapien facilisis netus eros nisi nibh sociosqu leo tellus, phasellus ad pulvinar accumsan magnis per tempor parturient libero. Auctor euismod viverra taciti tempus imperdiet sollicitudin, commodo aptent urna hendrerit iaculis vestibulum hac, porta laoreet nascetur quis condimentum.', 3000, 42, 'Su', '2021-12-13'),
 ('6', 4, 'Sudadera', 'Jmkgsr', 34090, 36, 'Su', '2021-12-13'),
 ('7', 7, 'Pantalonetas', 'Otro lorem ipsum', 8900, 34, 'Pa', '2021-12-13'),
-('9', 2, 'Tirantes elegantes', 'Mvivfgbf mkvdvdfvffg', 20000, 30, 'Ti', '2021-12-13');
+('9', 2, 'Tirantes elegantes', 'Mvivfgbf mkvdvdfvffg', 20000, 25, 'Ti', '2021-12-13');
 
 -- --------------------------------------------------------
 
@@ -1562,6 +1584,7 @@ INSERT INTO `secuencia_imagenes` (`id`) VALUES
 -- Estructura de tabla para la tabla `secuencia_pedido`
 --
 -- Creación: 03-12-2021 a las 17:23:00
+-- Última actualización: 21-12-2021 a las 16:50:36
 --
 
 DROP TABLE IF EXISTS `secuencia_pedido`;
@@ -1574,7 +1597,7 @@ CREATE TABLE `secuencia_pedido` (
 --
 
 INSERT INTO `secuencia_pedido` (`secuencia`) VALUES
-(5);
+(8);
 
 -- --------------------------------------------------------
 
