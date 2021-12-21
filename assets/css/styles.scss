@@ -17,13 +17,17 @@ $fondo_nav: #222;
 
 body{
     background: url(../img/bg.png);
-    font-family: sans-serif, Arial, Helvetica;
+    font-family: sans-serif, Arial, Helvetica;      
+    
+    ul{
+        list-style: none;
+    }
 
     .container{
         width: 80%;
         margin: 0 auto;
         box-shadow: 0px 0px 10px gray;
-        background: white;
+        background: white;        
 
         a, a:visited{
             color: $color_a;
@@ -80,8 +84,7 @@ body{
             overflow: hidden;
             clear: both;
             border-bottom: 4px solid $color_a;
-            ul{
-                list-style: none;
+            ul{                
                 margin: 0 auto;                
 
                 li{
@@ -248,6 +251,7 @@ body{
                         text-align: center;
                     }
                 }
+                
             }            
             
         }
@@ -376,6 +380,58 @@ body{
             border: 1px solid #cf1717;
         }
 
+        .delete-carrito, .total-carrito{
+            margin-top: 10px;            
+            text-align: center;
+        }
+
+        .button-remove-car{
+            width: 70px;
+            margin: 0px auto;
+            text-align: center;
+        }
+
+        .button-updown{
+            box-sizing: border-box;
+            padding: 5px;
+            background-color: #e4e1e1;
+            border-radius: 20px;
+            transition: all 500ms;            
+        }
+
+        .button-updown:hover{
+            background-color: #a19f9f;
+            color: #222;
+        }
+
+        .delete-carrito{            
+            float: left; 
+            width: 295px;           
+
+            .button-delete{
+                float: left;
+            }
+        }
+
+        .total-carrito{
+            display: flex;
+            width: 395px;
+            float: right;            
+            
+            h3{
+                display: block;            
+                float: left;
+            }
+
+            .button-pedido{
+                margin-top: 20px;
+                display: block;     
+                float: right;           
+                width: 200px;
+                height: 20px;
+            }
+        }
+
         .button-red:hover{
             background: rgb(207, 0, 0)!important;
         }
@@ -389,6 +445,10 @@ body{
             width: 100%;
             text-align: center;
             border-radius: 3px;
+
+            th{
+                text-align: center;
+            }
 
             td{
                 border-top: 1px solid #ccc;

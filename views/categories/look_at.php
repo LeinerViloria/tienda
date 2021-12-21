@@ -12,7 +12,7 @@
                 <h2><?= $producto['nombre'] ?></h2>
             </a>
             <p>$<?= number_format($producto['precio'], 0, ',', '.') ?></p>
-            <a href="#" class="button">Comprar</a>
+            <a href="<?=base_url?>car/add&id_producto=<?=$producto['id']?>" class="button">Comprar</a>
         </div>
     <?php endforeach; ?>
 <?php else : ?>

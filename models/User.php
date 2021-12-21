@@ -120,7 +120,7 @@ class User{
         $email=$this->getEmail();
         $pass=$this->getPassword();
         //Comprobar si existe el usuario
-        $sql = "SELECT nombres, apellidos, rol, imagen, numero, COUNT(1) Cantidad, password FROM usuarios WHERE email=:correo";
+        $sql = "SELECT id, nombres, apellidos, rol, imagen, numero, COUNT(1) Cantidad, password FROM usuarios WHERE email=:correo";
         $sentencia=self::$db->prepare($sql);
         $sentencia->bindParam(":correo", $email, PDO::PARAM_STR);
         $sentencia->execute();

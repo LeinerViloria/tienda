@@ -3,6 +3,10 @@ body {
   font-family: sans-serif, Arial, Helvetica;
 }
 
+body ul {
+  list-style: none;
+}
+
 body .container {
   width: 80%;
   margin: 0 auto;
@@ -68,7 +72,6 @@ body .container #menu {
 }
 
 body .container #menu ul {
-  list-style: none;
   margin: 0 auto;
 }
 
@@ -363,6 +366,62 @@ body .container .button-red {
   border: 1px solid #cf1717;
 }
 
+body .container .delete-carrito, body .container .total-carrito {
+  margin-top: 10px;
+  text-align: center;
+}
+
+body .container .button-remove-car {
+  width: 70px;
+  margin: 0px auto;
+  text-align: center;
+}
+
+body .container .button-updown {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  background-color: #e4e1e1;
+  border-radius: 20px;
+  -webkit-transition: all 500ms;
+  transition: all 500ms;
+}
+
+body .container .button-updown:hover {
+  background-color: #a19f9f;
+  color: #222;
+}
+
+body .container .delete-carrito {
+  float: left;
+  width: 295px;
+}
+
+body .container .delete-carrito .button-delete {
+  float: left;
+}
+
+body .container .total-carrito {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 395px;
+  float: right;
+}
+
+body .container .total-carrito h3 {
+  display: block;
+  float: left;
+}
+
+body .container .total-carrito .button-pedido {
+  margin-top: 20px;
+  display: block;
+  float: right;
+  width: 200px;
+  height: 20px;
+}
+
 body .container .button-red:hover {
   background: #cf0000 !important;
 }
@@ -376,6 +435,10 @@ body .container table {
   width: 100%;
   text-align: center;
   border-radius: 3px;
+}
+
+body .container table th {
+  text-align: center;
 }
 
 body .container table td {

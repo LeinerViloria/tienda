@@ -39,7 +39,7 @@
             <p class="price">$<?= number_format($thisProduct['precio'], 0, ',', '.') ?></p>
             <p class="stock"><?= $thisProduct['stock'] ?></p>
             <p class="descripcion"><?= $thisProduct['descripcion'] ?></p>
-            <a href="" class="button">Comprar</a>
+            <a href="<?=base_url?>car/add&id_producto=<?=$thisProduct['id']?>" class="button">Comprar</a>
         </div>
     </div>
 <?php else : ?>
